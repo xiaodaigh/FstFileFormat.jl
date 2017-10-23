@@ -15,19 +15,22 @@ function read(path)
   install_fst()
   R"""
     library(fst)
-    fst::read.fst($path)
+    dt = fst::read.fst($path)
   """
+  @rget dt
+  return dt
 end
 
-function write(path)
-  write(path, 0)
+function write(x, path)
+  write(x, path, 0)
 end
 
-function write(path, compress)
+function write(x, path, compress)
   install_fst()
+  @rput x
   R"""
     library(fst)
-    fst::read.fst($path,compress = $compress)
+    fst::read.fst(x, $path,compress = $compress)
   """
 end
 
