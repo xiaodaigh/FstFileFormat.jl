@@ -15,15 +15,34 @@ function install_fst()
   """
 end
 
-function read(path)
+# function read(path)
+#   #install_fst()
+#   R"""
+#     library(fst)
+#     dt = fst::read.fst($path)
+#   """
+#   @rget dt
+#   return dt
+# end
+
+function read(path; columns = [], from = 1, to = [])
   #install_fst()
+  @rput columns
+  @rput to
   R"""
     library(fst)
-    dt = fst::read.fst($path)
+    if(length(columns) == 0) {
+      columns = NULL
+    }
+    if(length(to) == 0) {
+      to = NULL
+    }
+    dt = fst::read.fst($path, columns = columns, from = $from, to = to)
   """
   @rget dt
   return dt
 end
+
 
 function write(x, path)
   write(x, path, 0)
