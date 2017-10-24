@@ -3,6 +3,8 @@ module fstformat
 
 using RCall
 
+export read, write, readmeta, install_fst
+
 function install_fst()
   R"""
     if(!require(fst)) {
@@ -12,7 +14,7 @@ function install_fst()
 end
 
 function read(path)
-  install_fst()
+  #install_fst()
   R"""
     library(fst)
     dt = fst::read.fst($path)
@@ -26,7 +28,7 @@ function write(x, path)
 end
 
 function write(x, path, compress)
-  install_fst()
+  #install_fst()
   @rput x
   R"""
     library(fst)
@@ -37,7 +39,7 @@ function write(x, path, compress)
 end
 
 function readmeta(path)
-  install_fst()
+  #install_fst()
   R"""
     library(fst)
     meta <- fst::fst.metadata($path)
