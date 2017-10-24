@@ -10,11 +10,26 @@ fstformat.write(df, "c:/temp/df.fst")
 # compression = 100; the highest
 fstformat.write(df, "c:/temp/df.fst", 100) 
 
+# read the metadata
+fstformat.readmeta("c:/temp/df.fst")
+
 # read the data
 fstformat.read("c:/temp/df.fst")
 
-# read the metadata
-fstformat.readmeta("c:/temp/df.fst")
+# read some columns
+fstformat.read("c:/temp/df.fst"; columns = ["col1", "col2"])
+
+# read some rows
+fstformat.read("c:/temp/df.fst"; from = 500, to = 1000)
+
+# read some columns and rows up to 1000
+fstformat.read("c:/temp/df.fst"; columns = ["col1", "col2"], to = 1000)
+
+# read some columns and rows from 500
+fstformat.read("c:/temp/df.fst"; columns = ["col1", "col2"], from = 500)
+
+# read some columns and rows from 500 to 1000
+fstformat.read("c:/temp/df.fst"; columns = ["col1", "col2"], from = 500, to = 1000)
 
 ```
 
