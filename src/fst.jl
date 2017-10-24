@@ -30,8 +30,20 @@ function write(x, path, compress)
   @rput x
   R"""
     library(fst)
-    fst::read.fst(x, $path,compress = $compress)
+    dt = fst::read.fst(x, $path,compress = $compress)
   """
+  @rget dt
+  return dt
+end
+
+function readmeta(path)
+  install_fst()
+  R"""
+    library(fst)
+    meta <- fst::fst.metadata($path)
+  """
+  @rget meta
+  return meta
 end
 
 # package code goes here
