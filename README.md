@@ -1,7 +1,7 @@
 # How to use
 ```julia
 Pkg.clone("https://github.com/xiaodaigh/fstformat.jl.git")
-using fstformat.jl
+using fstformat
 
 # df can be any object that DataFrames.DataFrame(df) can make into a DataFrame 
 # any IterableTables.jl compatible table like object is supported
