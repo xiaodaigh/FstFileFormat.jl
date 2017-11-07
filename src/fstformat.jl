@@ -10,7 +10,7 @@ export read, write, readmeta, install_fst, fst_installed
 const FST_NOT_INSTALLED_ERR_MSG = "fst package not installed\n run 'install_fst()' or install fst manually in R using 'install.packages('fst')'"
 
 """
-  
+
 """
 function install_fst()
   R"""
@@ -29,7 +29,7 @@ function fst_installed()
 end
 
 function read(path; columns = [], from = 1, to = [])
-  if fst_installed()
+  if !fst_installed()
     throw(ErrorException(FST_NOT_INSTALLED_ERR_MSG))
   end
 
@@ -55,7 +55,7 @@ function write(x, path)
 end
 
 function write(x, path, compress)
-  if fst_installed()
+  if !fst_installed()
     throw(ErrorException(FST_NOT_INSTALLED_ERR_MSG))
   end
 
@@ -70,7 +70,7 @@ function write(x, path, compress)
 end
 
 function readmeta(path)
-  if fst_installed()
+  if !fst_installed()
     throw(ErrorException(FST_NOT_INSTALLED_ERR_MSG))
   end
 
