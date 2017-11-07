@@ -10,7 +10,7 @@ export read, write, readmeta, install_fst, fst_installed
 const FST_NOT_INSTALLED_ERR_MSG = "fst package not installed\n run 'install_fst()' or install fst manually in R using 'install.packages('fst')'"
 
 """
-
+Install fst package if not already installed
 """
 function install_fst()
   R"""
@@ -20,6 +20,9 @@ function install_fst()
   """
 end
 
+"""
+Returns `true` if fst is installed and `false` otherwise
+"""
 function fst_installed()
   R"""
     fst_installed <- require(fst)
@@ -28,6 +31,15 @@ function fst_installed()
   fst_installed
 end
 
+"""
+Reads a fst file and return a DataFrame
+
+**Arguments**
+* `path` : path to the fst file
+* `columns` : an array of strings return only these columns in the DataFrame
+* `from`: read from which row; defaults from `1`
+* `to` : read to which row; defaults to `[]` which reads all rows
+"""
 function read(path; columns = [], from = 1, to = [])
   if !fst_installed()
     throw(ErrorException(FST_NOT_INSTALLED_ERR_MSG))
@@ -49,7 +61,14 @@ function read(path; columns = [], from = 1, to = [])
   return dt
 end
 
+"""
+Write a fst file and return
 
+**Arguments**
+* `x` : a DataFrame or an object that can be turned into a DataFrame via DataFrame(x)
+* `path` : path to the fst file
+* `compress` : an integer from 0 to 100 indicating the compression level; higher means more compressed
+"""
 function write(x, path)
   write(x, path, 0)
 end
@@ -69,6 +88,12 @@ function write(x, path, compress)
   return dt
 end
 
+"""
+Reads a fst file's metadata and returns a Dict of the attributes
+
+**Arguments**
+* `path` : path to the fst file
+"""
 function readmeta(path)
   if !fst_installed()
     throw(ErrorException(FST_NOT_INSTALLED_ERR_MSG))

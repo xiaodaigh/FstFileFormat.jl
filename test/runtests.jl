@@ -1,19 +1,51 @@
-using fstformat
+using fstformat, DataFrames
 using Base.Test
-using DataBench, fstformat
+
+import DataFrames.DataFrame
+
 # write your own tests here
-@test 1 == 1
+df = DataFrame(col1 = rand(1:5,1_000_000),
+    col2 = rand(1:100, 1_000_000),
+    col3 = rand(Bool, 1_000_000))
 
-a = createIndexedTable(100*100, 100)
+# df can be any object that DataFrames.DataFrame(df) can make into a DataFrame
+# any IterableTables.jl compatible table like object is supported
+@testset "general read write" begin
+    fstformat.write(df, "__test_fstformat.jl__.fst")
+    @test isfile("__test_fstformat.jl__.fst")
+    rm("__test_fstformat.jl__.fst")
 
-fstformat.write(a, "test2.fst")
+    # compression = 100; the highest
+    fstformat.write(df, "__test_fstformat.jl__c.fst", 100)
+    @test isfile("__test_fstformat.jl__c.fst")
 
-fstformat.readmeta("test2.fst")
+    # read the metadata
+    __df_meta__ = fstformat.readmeta("__test_fstformat.jl__c.fst")
+    @test __df_meta__[:NrOfRows] == 1_000_000
 
-fstformat.read("test2.fst")
+    # read the data
+    __tmp_df__ = fstformat.read("__test_fstformat.jl__c.fst")
+    @test nrow(__tmp_df__) == 1_000_000
 
-fstformat.read("test2.fst"; columns =["id6","v1"])
+    # read some columns
+    __tmp_df__ = fstformat.read("__test_fstformat.jl__c.fst"; columns = ["col1", "col2"])
+    @test ncol(__tmp_df__) == 2
 
-fstformat.read("test2.fst"; columns =["id6","v1"], to = 1000)
+    # read some rows
+    __tmp_df__ = fstformat.read("__test_fstformat.jl__c.fst"; from = 500, to = 1000)
+    @test nrow(__tmp_df__) == 501
 
-fstformat.read("test2.fst"; columns =["id6","v1"], from = 500, to = 1000)
+    # read some columns and rows up to 1000
+    __tmp_df__ = fstformat.read("__test_fstformat.jl__c.fst"; columns = ["col1", "col2"], to = 1000)
+    @test ncol(__tmp_df__) == 2 && nrow(__tmp_df__) == 1000
+
+    # read some columns and rows from 500
+    __tmp_df__ = fstformat.read("__test_fstformat.jl__c.fst"; columns = ["col1", "col2"], from = 500)
+    @test ncol(__tmp_df__) == 2 && nrow(__tmp_df__) == 1_000_000 - 500 + 1
+
+    # read some columns and rows from 500 to 1000
+    __tmp_df__ = fstformat.read("__test_fstformat.jl__c.fst"; columns = ["col1", "col2"], from = 500, to = 1000)
+    @test ncol(__tmp_df__) == 2 && nrow(__tmp_df__) == 501
+
+    rm("__test_fstformat.jl__c.fst")
+end
