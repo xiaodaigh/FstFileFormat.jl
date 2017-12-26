@@ -3,7 +3,7 @@ using Base.Test
 
 import DataFrames.DataFrame
 
-# write your own tests here
+# test writing and reading from a DataFrame
 df = DataFrame(col1 = rand(1:5,1_000_000),
     col2 = rand(1:100, 1_000_000),
     col3 = rand(Bool, 1_000_000))
@@ -21,7 +21,7 @@ df = DataFrame(col1 = rand(1:5,1_000_000),
 
     # read the metadata
     __df_meta__ = fstformat.readmeta("__test_fstformat.jl__c.fst")
-    @test __df_meta__[:NrOfRows] == 1_000_000
+    @test __df_meta__[:nrOfRows] == 1_000_000
 
     # read the data
     __tmp_df__ = fstformat.read("__test_fstformat.jl__c.fst")

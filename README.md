@@ -1,3 +1,6 @@
+# About
+This is the Julia bindings for the fst format (http://www.fstpackage.org) although the format was originally designed to work with R it is language independent.
+
 # How to use
 ```julia
 Pkg.clone("https://github.com/xiaodaigh/fstformat.jl.git")
@@ -39,6 +42,3 @@ fstformat.read("df.fst"; columns = ["col1", "col2"], from = 500)
 fstformat.read("df.fst"; columns = ["col1", "col2"], from = 500, to = 1000)
 
 ```
-
-# About
-This is the Julia bindings for the fst format (http://www.fstpackage.org) although the format was originally designed to work with R it is language independent.

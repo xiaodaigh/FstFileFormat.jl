@@ -2,12 +2,12 @@ __precompile__(true)
 module fstformat
 
 using RCall
-using IterableTables # to enable conversion between table types
+# using IterableTables # to enable conversion between table types
 import DataFrames.DataFrame
 
 export read, write, readmeta, install_fst, fst_installed
 
-const FST_NOT_INSTALLED_ERR_MSG = "fst package not installed\n run 'install_fst()' or install fst manually in R using 'install.packages('fst')'"
+const FST_NOT_INSTALLED_ERR_MSG = "fst package not installed\n run 'fstformat.install_fst()' or install fst manually in R using 'install.packages('fst')'"
 
 """
 Install fst package if not already installed
