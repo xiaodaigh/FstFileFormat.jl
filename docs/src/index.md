@@ -1,6 +1,6 @@
 #The fstformat.jl package
 
-A package to read and write files of fst format
+A package to read and write files of [fst format](fstpackage.org)
 
 ## Documemntation
 
