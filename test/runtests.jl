@@ -3,6 +3,11 @@ using Base.Test
 
 import DataFrames.DataFrame
 
+# install fst if not allready
+if !fstformat.fst_installed()
+    fstformat.install_fst()
+end
+
 # test writing and reading from a DataFrame
 df = DataFrame(col1 = rand(1:5,1_000_000),
     col2 = rand(1:100, 1_000_000),
