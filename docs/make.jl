@@ -1,9 +1,14 @@
-using Documenter, fstformat
+using Documenter, FstFileFormat
 
-makedocs(modules=[fstformat],
-        doctest=true)
+makedocs(modules=[FstFileFormat],
+        doctest=true,
+        format = :html,
+	    sitename = "FstFileFormat.jl",
+	    pages = [
+		    "The FstFileFormat.jl package" => "index.md"])
 
-deploydocs(deps   = Deps.pip("mkdocs", "python-markdown-math"),
-    repo = "github.com/xiaodaigh/fstformat.jl.git",
-    julia  = "0.6.2",
-    osname = "windows")
+deploydocs(deps = nothing,
+    make = nothing,
+    target = "build",
+    repo = "github.com/xiaodaigh/FstFileFormat.jl.git",
+    julia  = "0.6")
