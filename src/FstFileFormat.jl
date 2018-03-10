@@ -16,7 +16,7 @@ function install_fst()
   println("STEP 1A")
   R"""
     if(!require(fst)) {
-      install.packages("fst")
+      install.packages("fst", repos="https://cloud.r-project.org")
     }
   """
   println("STEP 1B")
