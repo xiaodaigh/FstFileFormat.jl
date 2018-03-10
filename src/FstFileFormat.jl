@@ -13,20 +13,25 @@ const FST_NOT_INSTALLED_ERR_MSG = "fst package not installed\n run 'FstFileForma
 Install fst package if not already installed
 """
 function install_fst()
+  println("STEP 1A")
+  R"""print(.libPaths())"""
   R"""
     if(!require(fst)) {
-      install.packages("fst")
+      install.packages("fst", repos="https://cloud.r-project.org")
     }
   """
+  println("STEP 1B")
 end
 
 """
 Returns `true` if fst is installed and `false` otherwise
 """
 function fst_installed()
+  println("STEP 2A")
   R"""
     fst_installed <- require(fst)
   """
+  println("STEP 2B")
   @rget fst_installed
   fst_installed
 end

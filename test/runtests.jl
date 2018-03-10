@@ -3,10 +3,14 @@ using Base.Test
 
 import DataFrames.DataFrame
 
+println("STEP A")
 # install fst if not allready
 if !FstFileFormat.fst_installed()
+    println("STEP B")
     FstFileFormat.install_fst()
+    println("STEP C")
 end
+println("STEP D")
 
 # test writing and reading from a DataFrame
 df = DataFrame(col1 = rand(1:5,1_000_000),
@@ -16,7 +20,9 @@ df = DataFrame(col1 = rand(1:5,1_000_000),
 # df can be any object that DataFrames.DataFrame(df) can make into a DataFrame
 # any IterableTables.jl compatible table like object is supported
 @testset "general read write" begin
+println("STEP E")
     FstFileFormat.write(df, "__test_fstformat.jl__.fst")
+println("STEP F")
     @test isfile("__test_fstformat.jl__.fst")
     rm("__test_fstformat.jl__.fst")
 
