@@ -14,6 +14,7 @@ Install fst package if not already installed
 """
 function install_fst()
   println("STEP 1A")
+  R"""print(.libPaths())"""
   R"""
     if(!require(fst)) {
       install.packages("fst", repos="https://cloud.r-project.org")
