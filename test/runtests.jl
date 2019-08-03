@@ -1,5 +1,5 @@
 using FstFileFormat, DataFrames
-using Base.Test
+using Test
 
 import DataFrames.DataFrame
 
