@@ -1,0 +1,6 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+FstFileFormat = "01a6e8c0-b5b3-11e9-1fe6-8b3e5c2aa61e"
+
+[compat]
+Documenter = "~0.23"
