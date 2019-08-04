@@ -2,8 +2,16 @@
 This is the Julia bindings for the fst format (http://www.fstpackage.org) although the format was originally designed to work with R it is language independent.
 
 # How to use
+
+Install the package via the julia package manager:
+
 ```julia
-Pkg.clone("https://github.com/xiaodaigh/FstFileFormat.jl.git")
+pkg> add FstFileFormat
+```
+
+Then use it to read and write fst files:
+
+```julia
 using FstFileFormat
 using DataFrames
 import DataFrames.DataFrame
