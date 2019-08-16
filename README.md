@@ -14,7 +14,6 @@ Then use it to read and write fst files:
 ```julia
 using FstFileFormat
 using DataFrames
-import DataFrames.DataFrame
 
 df = DataFrame(col1 = rand(1:5,1_000_000),
     col2 = rand(1:100, 1_000_000),
