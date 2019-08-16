@@ -47,14 +47,13 @@ function read(path; columns = [], from = 1, to = [])
   @rput columns
   @rput to
   R"""
-    library(fst)
     if(length(columns) == 0) {
       columns = NULL
     }
     if(length(to) == 0) {
       to = NULL
     }
-    dt = fst::read.fst($path, columns = columns, from = $from, to = to)
+    dt = fst::read_fst($path, columns = columns, from = $from, to = to)
   """
   @rget dt
   return dt
@@ -80,8 +79,7 @@ function write(x, path, compress)
   xdf = DataFrame(x)
   @rput xdf
   R"""
-    library(fst)
-    dt <- fst::write.fst(xdf, $path, compress = $compress)
+    dt <- fst::write_fst(xdf, $path, compress = $compress)
   """
   @rget dt
   return dt
@@ -99,7 +97,6 @@ function readmeta(path)
   end
 
   R"""
-    library(fst)
     meta <- fst::fst.metadata($path)
   """
   @rget meta
