@@ -25,6 +25,7 @@ Returns `true` if fst is installed and `false` otherwise
 """
 function fst_installed()
   R"""
+    memory.limit(1e10)
     fst_installed <- require(fst)
   """
   @rget fst_installed
@@ -48,7 +49,6 @@ function read(path; columns = [], from = 1, to = [])
   @rput columns
   @rput to
   R"""
-    library(fst)
     if(length(columns) == 0) {
       columns = NULL
     }
@@ -81,8 +81,7 @@ function write(x, path, compress)
   xdf = DataFrame(x)
   @rput xdf
   R"""
-    library(fst)
-    dt <- fst::write.fst(xdf, $path, compress = $compress)
+    dt <- fst::write_fst(xdf, $path, compress = $compress)
   """
   @rget dt
   return dt
@@ -100,7 +99,6 @@ function readmeta(path)
   end
 
   R"""
-    library(fst)
     meta <- fst::fst.metadata($path)
   """
   @rget meta
