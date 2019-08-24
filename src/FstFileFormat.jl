@@ -1,4 +1,3 @@
-__precompile__(true)
 module FstFileFormat
 
 using RCall
@@ -55,7 +54,7 @@ function read(path; columns = [], from = 1, to = [])
     if(length(to) == 0) {
       to = NULL
     }
-    dt = fst::read.fst($path, columns = columns, from = $from, to = to)
+    dt = fst::read_fst($path, columns = columns, from = $from, to = to)
   """
   @rget dt
   return dt

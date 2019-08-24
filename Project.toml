@@ -6,3 +6,14 @@ version = "0.1.0"
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
+
+[compat]
+julia = "1"
+DataFrames = "0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19"
+RCall = "0.12, 0.13"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
