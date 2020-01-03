@@ -1,6 +1,4 @@
 
-[![Build Status](https://travis-ci.org/xiaodaigh/FstFileFormat.jl.svg?branch=master)](https://travis-ci.org/xiaodaigh/FstFileFormat.jl)
-
 # About
 
 This is the Julia bindings for the fst format (http://www.fstpackage.org) although the format was originally designed to work with R it is language independent.
@@ -65,3 +63,9 @@ FstFileFormat.read("df.fst"; columns = ["col1", "col2"], from = 500)
 FstFileFormat.read("df.fst"; columns = ["col1", "col2"], from = 500, to = 1000)
 
 ```
+
+# Build Status
+
+
+[![Build Status](https://travis-ci.org/xiaodaigh/FstFileFormat.jl.svg?branch=master)](https://travis-ci.org/xiaodaigh/FstFileFormat.jl)
+
