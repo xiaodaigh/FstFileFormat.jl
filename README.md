@@ -1,4 +1,8 @@
+
+[![Build Status](https://travis-ci.org/xiaodaigh/FstFileFormat.jl.svg?branch=master)](https://travis-ci.org/xiaodaigh/FstFileFormat.jl)
+
 # About
+
 This is the Julia bindings for the fst format (http://www.fstpackage.org) although the format was originally designed to work with R it is language independent.
 
 # How to use
