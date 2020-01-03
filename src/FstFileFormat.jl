@@ -69,7 +69,7 @@ Write a fst file and return
 * `compress` : an integer from 0 to 100 indicating the compression level; higher means more compressed
 """
 function write(x, path)
-  write(x, path, 0)
+  write(x, path, 30)
 end
 
 function write(x, path, compress)
