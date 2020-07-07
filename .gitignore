@@ -3,3 +3,6 @@
 *.jl.mem
 
 *.dll
+fstfileformat.code-workspace
+Manifest.toml
+Manifest.toml

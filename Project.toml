@@ -1,14 +1,14 @@
 name = "FstFileFormat"
 uuid = "01a6e8c0-b5b3-11e9-1fe6-8b3e5c2aa61e"
 authors = ["Dai ZJ <zhuojia.dai@gmail.com>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
 
 [compat]
-DataFrames = "0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.20"
+DataFrames = "0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.20, 0.21"
 RCall = "0.12, 0.13"
 julia = "1"
 
