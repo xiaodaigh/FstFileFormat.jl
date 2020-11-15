@@ -1,8 +1,6 @@
 using FstFileFormat, DataFrames
 using Test
 
-import DataFrames.DataFrame
-
 # install fst if not allready
 if !FstFileFormat.fst_installed()
     FstFileFormat.install_fst()
