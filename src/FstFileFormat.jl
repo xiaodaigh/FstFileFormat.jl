@@ -1,8 +1,7 @@
 module FstFileFormat
 
 using RCall
-# using IterableTables # to enable conversion between table types
-import DataFrames.DataFrame
+using Tables
 
 export read, write, readmeta, install_fst, fst_installed
 
@@ -77,10 +76,12 @@ function write(x, path, compress)
     throw(ErrorException(FST_NOT_INSTALLED_ERR_MSG))
   end
 
-  xdf = DataFrame(x)
-  @rput xdf
+  # x is needs to be colum-accessible
+  @assert Tables.istable(x)
+
+  @rput x
   R"""
-    dt <- fst::write_fst(xdf, $path, compress = $compress)
+    dt <- fst::write_fst(x, $path, compress = $compress)
   """
   @rget dt
   return dt
